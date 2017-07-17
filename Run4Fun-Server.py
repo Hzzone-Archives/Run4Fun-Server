@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, request
+from Database import *
 
 app = Flask(__name__)
 
@@ -9,12 +10,20 @@ def hello_world():
 
 @app.route('/login', methods=['POST'])
 def login():
-    pass
+    user_id = request.form.get('user_id')
+    user_passwd = request.form.get('password')
+    print("id: "+user_id)
+    print("password: "+user_passwd)
+    return isUserExistsOrPasswdCorrect(user_id=user_id, user_passwd=user_passwd, cursor=conn.cursor())
 
 @app.route('/register', methods=['POST'])
 def register():
     pass
 
 
+# 数据库连接
+global conn
+
 if __name__ == '__main__':
+    conn = connectPostgreSQL()
     app.run()
