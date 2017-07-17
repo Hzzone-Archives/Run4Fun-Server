@@ -18,7 +18,8 @@ def login():
 
 @app.route('/register', methods=['POST'])
 def register():
-    pass
+    user_id = request.form.get('user_id')
+    user_passwd = request.form.get('password')
 
 
 # 数据库连接

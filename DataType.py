@@ -8,9 +8,10 @@ class User(object):
         self.ismale = ismale
 
 class ReturnValue(object):
-    def __init__(self, isOk=False, user=None):
+    def __init__(self, isOk=False, msg=None, user=None):
         self.isOk = isOk
         self.user = user
+        self.msg = msg
     def toString(self):
         value = json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
         return value
