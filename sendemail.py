@@ -19,6 +19,7 @@ def sendEmail(email_title, email_text, target_address):
 		print("Send email success!")
 	except smtplib.SMTPException:
 		print("Send email falied")
+	return email_text
 
 # if __name__ == "__main__":
 # 	sendEmail("hahahah", '100')

@@ -16,7 +16,7 @@ def login():
     print("password: "+user_passwd)
     return isUserExistsOrPasswdCorrect(user_id=user_id, password=user_passwd, cursor=conn.cursor())
 
-@app.route('/register', methods=['POST'])
+@app.route('/register-1', methods=['POST'])
 def register():
     user_id = request.form.get('user_id')
     user_passwd = request.form.get('password')
@@ -24,6 +24,18 @@ def register():
     user_name = request.form.get('user_name')
     ismale = request.form.get('ismale')
     return isUserExistsOrRegisterSuccess(User(user_id=user_id, phone_number=phone_number, user_name=user_name, password=user_passwd, ismale=ismale), conn=conn)
+
+
+# 验证成功后，插入数据库
+@app.route('/register-2', methods=['POST'])
+def verify():
+    user_id = request.form.get('user_id')
+    user_passwd = request.form.get('password')
+    phone_number = request.form.get('phone_number')
+    user_name = request.form.get('user_name')
+    ismale = request.form.get('ismale')
+    return verifyCode(User(user_id=user_id, phone_number=phone_number, user_name=user_name, password=user_passwd, ismale=ismale), conn=conn)
+
 
 # 数据库连接
 global conn
